@@ -1,14 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
-import TagIcon from './components/TagIcon/TagIcon';
 import './App.css';
 import PostPreview from './components/PostPreview/PostPreview';
 
-// #region globals
-
-window.basePath = "/wp-content/themes/pxf-react/react-src/";
-
-// #endregion
+require('dotenv').config({path: "/wp-content/themes/pxf-react/react-src/.env"});
 
 function App() {
   return (
@@ -18,7 +13,7 @@ function App() {
         <PostPreview title="Some Post" 
                      excerpt="this is some post i just made up to make you feel oh so special my dude"
                      tags={["CS", "XAML"]}
-                     date={new Date()}
+                     date={(new Date()).toString()}
                      />
         <p>
           Edit <code>react-src/src/App.js</code> and save to reload.

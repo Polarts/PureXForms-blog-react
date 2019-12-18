@@ -6,7 +6,7 @@ import TagIcon from '../TagIcon/TagIcon';
  * @param {String} props.title The post title.
  * @param {String} props.excerpt The post excert.
  * @param {String[]} props.tags Array of the post tags.
- * @param {Date} props.date The date it was posted.
+ * @param {String} props.date The date it was posted, stringified.
  * @param {String} props.previewImgUrl URL of the preview image.
  */
 const PostPreview = (props) => {
@@ -23,7 +23,7 @@ const PostPreview = (props) => {
                     {props.tags.map(t => <TagIcon tagName={t}/>)}
                 </div>
                 <span key="date">
-                    {props.date.toString()}
+                    {props.date}
                 </span>
             </div>
         </div>

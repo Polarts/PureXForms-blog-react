@@ -5,8 +5,9 @@ import React from 'react';
  * @param {String} props.tagName the tag name of which the icon will be displayed.
  */
 const TagIcon = (props) => {
+    var tagImg = require("../../res/tags/"+props.tagName+".png");
     return (
-        <img src={window.basePath+"res/tags/"+props.tagName+".png"} alt={props.tagName}/>
+        <img src={tagImg} alt={props.tagName}/>
     )
 }
 

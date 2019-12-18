@@ -1,0 +1,75 @@
+@import './colors.scss';
+@import './mixins.scss';
+
+body {
+    font-size: 14px;
+    line-height: 200%;
+    font-family: 'PT Sans', sans-serif;
+    margin: 0;
+    background-color: $background;
+}
+
+h1 {
+    font-size: 48px;
+    line-height: 120%;
+    font-family: 'PT Sans Caption', sans-serif;
+}
+
+h2 {
+    font-size: 24px;
+    line-height: 120%;
+    font-family: 'PT Sans Caption', sans-serif;
+}
+
+h3 {
+    font-size: 16px;
+    line-height: 120%;
+    font-family: 'PT Sans Caption', sans-serif;
+}
+
+.profile {
+    border-radius: 100%;
+    border-width: 5px;
+    border-color: $emphasis;
+    border-style: solid;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+
+    line-height: 110%;
+
+    background-color: $background;
+    box-shadow: 0 -0.1em 0.5em 0em gray;
+
+    padding-top: 1em;
+
+    #credits {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        h4 {
+            margin: 0 2em;
+
+            img {
+                //transform: translateY(3s0%);
+                height: 42px;
+            }
+        }
+
+        @include respond-to(phone-wide) {
+            transform: scale(0.7);
+        }
+    }
+
+    @include respond-to(phone-wide) {
+        font-size: 9px;
+    }
+}

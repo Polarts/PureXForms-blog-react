@@ -3,9 +3,11 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-        "@devloco\/react-scripts-wptheme": "3.2.0-wp.2",
+        "@devloco/react-scripts-wptheme": "3.2.0-wp.2",
+        "node-sass": "^4.13.0",
         "react": "^16.12.0",
-        "react-dom": "^16.12.0"
+        "react-dom": "^16.12.0",
+        "wordpress": "^1.4.1"
     },
     "scripts": {
         "crabuild": "react-scripts build",
@@ -32,6 +34,6 @@
             "last 1 safari version"
         ]
     },
-    "homepage": "\/wp-content\/themes\/pxf-react",
-    "browserLaunchTo": "http:\/\/pxf.local"
+    "homepage": "/wp-content/themes/pxf-react",
+    "browserLaunchTo": "http://pxf.local"
 }
