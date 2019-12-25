@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './TagIcon.module.scss';
 
 /**
  * Renders a tag icon instead of just text.
@@ -10,7 +11,12 @@ const TagIcon = (props) => {
     }
     var tagImg = require("../../res/tags/"+props.tagName+".png");
     return (
-        <img src={tagImg} alt={props.tagName}/>
+        <div className={styles.container}>
+            <img src={tagImg} alt={props.tagName}/>
+            <p className={styles.tooltip}>
+                {props.tagName}
+            </p>
+        </div>
     )
 }
 
