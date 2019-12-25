@@ -13,11 +13,11 @@ import styles from './PostPreview.module.scss';
 const PostPreview = (props) => {
 
     return (
-        <div className={styles.innerContainer}>
+        <div className={styles.container}>
             <img className={styles.previewImage} src={props.previewImgUrl} alt={props.title+" preview"}/>
             <div className={styles.contents}>    
                 <div className={styles.summary}>
-                    <h3>{props.title}</h3>
+                    <h2>{props.title}</h2>
                     <p>{props.excerpt}</p>
                 </div>
                 <div className={styles.bottomBar}>
