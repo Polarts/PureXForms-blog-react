@@ -1,6 +1,7 @@
 import React from 'react';
 import TagIcon from '../TagIcon/TagIcon';
 import styles from './PostPreview.module.scss';
+import moment from 'moment';
 
 /**
  * A post preview seen from the home page.
@@ -11,7 +12,6 @@ import styles from './PostPreview.module.scss';
  * @param {String} props.previewImgUrl URL of the preview image.
  */
 const PostPreview = (props) => {
-
     return (
         <div className={styles.container}>
             <img className={styles.previewImage} src={props.previewImgUrl} alt={props.title+" preview"}/>
@@ -22,10 +22,10 @@ const PostPreview = (props) => {
                 </div>
                 <div className={styles.bottomBar}>
                     <div className={styles.tags}>
-                        {props.tags.map(t => <TagIcon tagName={t} key={t}/>)}
+                        {props.hasOwnProperty("tags") ? props.tags.map(t => <TagIcon tagName={t} key={t}/>) : null}
                     </div>
                     <span className={styles.date}>
-                        {props.date}
+                        {moment(props.date).format("MMM Do, YYYY")}
                     </span>
                 </div>
             </div>
