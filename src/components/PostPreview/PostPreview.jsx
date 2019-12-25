@@ -1,5 +1,6 @@
 import React from 'react';
 import TagIcon from '../TagIcon/TagIcon';
+import styles from './PostPreview.module.scss';
 
 /**
  * A post preview seen from the home page.
@@ -12,19 +13,21 @@ import TagIcon from '../TagIcon/TagIcon';
 const PostPreview = (props) => {
 
     return (
-        <div>
-            <img key="previewImage" src={props.previewImgUrl} alt={props.title+" preview"}/>
-            <div key="summary">
-                <h3>{props.title}</h3>
-                <p>{props.excerpt}</p>
-            </div>
-            <div key="bottomBar">
-                <div key="tags">
-                    {props.tags.map(t => <TagIcon tagName={t}/>)}
+        <div className={styles.innerContainer}>
+            <img className={styles.previewImage} src={props.previewImgUrl} alt={props.title+" preview"}/>
+            <div className={styles.contents}>    
+                <div className={styles.summary}>
+                    <h3>{props.title}</h3>
+                    <p>{props.excerpt}</p>
                 </div>
-                <span key="date">
-                    {props.date}
-                </span>
+                <div className={styles.bottomBar}>
+                    <div className={styles.tags}>
+                        {props.tags.map(t => <TagIcon tagName={t} key={t}/>)}
+                    </div>
+                    <span className={styles.date}>
+                        {props.date}
+                    </span>
+                </div>
             </div>
         </div>
     )
