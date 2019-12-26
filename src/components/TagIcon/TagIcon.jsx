@@ -13,9 +13,9 @@ const TagIcon = (props) => {
     return (
         <div className={styles.container}>
             <img src={tagImg} alt={props.tagName}/>
-            <p className={styles.tooltip}>
+            <span className={styles.tooltip}>
                 {props.tagName}
-            </p>
+            </span>
         </div>
     )
 }
