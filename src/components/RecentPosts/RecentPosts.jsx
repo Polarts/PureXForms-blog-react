@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import wpClient from '../../services/wordpress'
 import PostPreview from '../PostPreview/PostPreview';
 import styles from './RecentPosts.module.scss';
+import InputWithButton from '../InputWithButton/InputWithButton';
 
 const RecentPosts = (props) => {
 
@@ -33,7 +34,13 @@ const RecentPosts = (props) => {
 
     return (
         <div className={styles.container}>
-            {mapPostsToPreviews()}
+            <InputWithButton 
+                placeholder="Find a post..."
+                buttonContent="Find"
+            />
+            <div className={styles.posts}>
+                {mapPostsToPreviews()}
+            </div>
         </div>
     );
 }

@@ -11,9 +11,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <div style={{display: "flex", flexDirection: "row", justifyContent: "space-evenly", width: "100vw"}}>
-        <RecentPosts/>  
-        </div>
+        <RecentPosts/>
         <p>
           Edit <code>react-src/src/App.js</code> and save to reload.
         </p>
