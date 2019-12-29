@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Icon from '@mdi/react'
-import { mdiMagnify } from '@mdi/js'
+import { mdiMagnify, mdiLoading } from '@mdi/js'
 import wpClient from '../../services/wordpress'
 import PostPreview from '../PostPreview/PostPreview';
 import styles from './RecentPosts.module.scss';
@@ -8,24 +8,41 @@ import InputWithButton from '../InputWithButton/InputWithButton';
 
 const RecentPosts = (props) => {
 
-    const [posts, setPosts] = useState([]);
-  
-    useEffect(() => {
-        wpClient.getPosts({}, ["title", "excerpt", "terms", "date", "type"], (err, psts) => {
+    // #region state
 
-            if(err) {
-                console.log(err);
-                return;
+    const [posts, setPosts] = useState([]);
+    const [keywords, setKeywords] = useState("");
+  
+    // #endregion
+
+    // #region effects
+
+    const getPosts = () => {
+        wpClient.getPosts(
+            { post_status: "publish" }, 
+            ["title", "excerpt", "terms", "date"], 
+            (err, psts) => {
+
+                if(err) {
+                    console.log(err);
+                    return;
+                }
+                var filteredPosts = psts.filter(p => p.title.includes(keywords));
+                console.log(filteredPosts);
+                setPosts(filteredPosts);
             }
-            
-            console.log(psts);
-            setPosts(psts.filter(p => p.type !== "draft"));
-        });
-    }, []);
+        );
+    }
+    useEffect(getPosts, [keywords]);
+
+    // #endregion
+
+    // #region UI functions
 
     const mapPostsToPreviews = () => 
         posts.map(p => 
             <PostPreview 
+                key={p.title}
                 title={p.title}
                 excerpt={p.excerpt}
                 tags={p.terms.map(t => t.name)}
@@ -34,9 +51,16 @@ const RecentPosts = (props) => {
             />
         );
 
-    const searchSubmitted = keywords => {
-        console.log("search keywords: "+keywords);
+    // #endregion
+
+    // #region UI event callbacks
+
+    const searchSubmitted = kwds => {
+        console.log("search keywords: "+kwds);
+        setKeywords(kwds);
     }
+
+    // #endregion
 
     return (
         <div className={styles.container}>
