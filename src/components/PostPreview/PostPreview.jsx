@@ -5,11 +5,11 @@ import moment from 'moment';
 
 /**
  * A post preview seen from the home page.
- * @param {String} props.title The post title.
- * @param {String} props.excerpt The post excert.
- * @param {String[]} props.tags Array of the post tags.
- * @param {String} props.date The date it was posted, stringified.
- * @param {String} props.previewImgUrl URL of the preview image.
+ * @param {String} title The post title.
+ * @param {String} excerpt The post excert.
+ * @param {String[]} tags Array of the post tags.
+ * @param {String} date The date it was posted, stringified.
+ * @param {String} previewImgUrl URL of the preview image.
  */
 const PostPreview = (props) => {
     return (

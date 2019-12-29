@@ -3,7 +3,7 @@ import styles from './TagIcon.module.scss';
 
 /**
  * Renders a tag icon instead of just text.
- * @param {String} props.tagName the tag name of which the icon will be displayed.
+ * @param {String} tagName the tag name of which the icon will be displayed.
  */
 const TagIcon = (props) => {
     if (props.tagName === "Uncategorized") {

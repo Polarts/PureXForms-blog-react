@@ -3,7 +3,7 @@
 .singleLineForm {
     position: relative;
     width: 500px;
-    margin: 25px;
+    margin: 55px;
     font-size: 16px;
 
     input {
@@ -11,6 +11,7 @@
         left: 0;
         width: inherit;
         padding-left: 10px;
+        font-size: inherit;
 
         border: 1px solid transparent;
         border-radius: 20px;
@@ -26,6 +27,7 @@
     button {
         position: absolute;
         right: -15px;
+        font-size: inherit;
         
         border: 1px solid transparent;
         border-radius: 20px;

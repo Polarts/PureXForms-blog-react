@@ -32,12 +32,17 @@ const RecentPosts = (props) => {
                 date={p.date}
                 previewImgUrl=""
             />
-        )
+        );
+
+    const searchSubmitted = keywords => {
+        console.log("search keywords: "+keywords);
+    }
 
     return (
         <div className={styles.container}>
             <InputWithButton 
                 placeholder="Find a post..."
+                onSubmit={searchSubmitted}
                 buttonContent={
                     <Icon 
                         path={mdiMagnify}
