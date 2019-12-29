@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Icon from '@mdi/react'
+import { mdiMagnify } from '@mdi/js'
 import wpClient from '../../services/wordpress'
 import PostPreview from '../PostPreview/PostPreview';
 import styles from './RecentPosts.module.scss';
@@ -36,7 +38,15 @@ const RecentPosts = (props) => {
         <div className={styles.container}>
             <InputWithButton 
                 placeholder="Find a post..."
-                buttonContent="Find"
+                buttonContent={
+                    <Icon 
+                        path={mdiMagnify}
+                        title="Search"
+                        size={0.5}
+                        color="White"
+                        style={{transform: "scale(1.4)"}}
+                    />
+                }
             />
             <div className={styles.posts}>
                 {mapPostsToPreviews()}

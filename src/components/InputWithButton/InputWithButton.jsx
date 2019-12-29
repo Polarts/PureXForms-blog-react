@@ -10,10 +10,13 @@ import styles from './InputWithButton.module.scss';
  * @param {Function} props.onSubmit A submission callback.
  */
 const InputWithButton = (props) => {
-
     return (
         <div className={styles.singleLineForm}>
-            <input type={props.type} onChange={props.textChanged} placeholder={props.placeholder}/>
+            <input 
+                type={props.type} 
+                onChange={props.textChanged} 
+                placeholder={props.placeholder}
+            />
             <button onClick={props.onSubmit}>
                 {props.buttonContent}
             </button>
