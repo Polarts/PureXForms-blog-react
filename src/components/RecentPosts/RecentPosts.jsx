@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import Icon from '@mdi/react'
 import { mdiMagnify, mdiLoading } from '@mdi/js'
 import wpClient from '../../services/wordpress'
@@ -10,14 +10,38 @@ const RecentPosts = (props) => {
 
     // #region state
 
-    const [posts, setPosts] = useState([]);
-    const [keywords, setKeywords] = useState("");
+    const reducer = (state, action) => {
+        switch(action.type){
+            case "setPosts":
+                return {
+                    ...state,
+                    posts: action.posts,
+                    postsFetched: true
+                };
+            case "setKeywords":
+                return {
+                    ...state,
+                    keywords: action.keywords,
+                    postsFetched: false
+                };
+            default: 
+                throw new Error("Invalid action "+action.type);
+        }
+    }
+
+    const [state, dispatch] = useReducer(reducer, 
+        {
+            posts: [],
+            postsFetched: false,
+            keywords: ""
+        }
+    );
   
     // #endregion
 
     // #region effects
 
-    const getPosts = () => {
+    const getPostsAsync = () => new Promise(res => {
         wpClient.getPosts(
             { post_status: "publish" }, 
             ["title", "excerpt", "terms", "date"], 
@@ -27,20 +51,26 @@ const RecentPosts = (props) => {
                     console.log(err);
                     return;
                 }
-                var filteredPosts = psts.filter(p => p.title.includes(keywords));
-                console.log(filteredPosts);
-                setPosts(filteredPosts);
+                var filteredPosts = psts.filter(p => p.title.includes(state.keywords));
+                res(filteredPosts);
             }
         );
+    })
+
+    const getPostsEffect = async () => {
+        var psts = await getPostsAsync();
+        dispatch({ type: "setPosts", posts: psts });
     }
-    useEffect(getPosts, [keywords]);
+
+    useEffect(() => { getPostsEffect() }, [state.keywords]);
 
     // #endregion
 
     // #region UI functions
 
-    const mapPostsToPreviews = () => 
-        posts.map(p => 
+    const mapPostsToPreviews = () => {
+        console.log(state.posts)
+        return state.posts.map(p => 
             <PostPreview 
                 key={p.title}
                 title={p.title}
@@ -50,14 +80,14 @@ const RecentPosts = (props) => {
                 previewImgUrl=""
             />
         );
+    }
 
     // #endregion
 
     // #region UI event callbacks
 
     const searchSubmitted = kwds => {
-        console.log("search keywords: "+kwds);
-        setKeywords(kwds);
+        dispatch({ type: "setKeywords", keywords: kwds })
     }
 
     // #endregion
@@ -69,16 +99,17 @@ const RecentPosts = (props) => {
                 onSubmit={searchSubmitted}
                 buttonContent={
                     <Icon 
-                        path={mdiMagnify}
+                        path={state.postsFetched? mdiMagnify : mdiLoading}
                         title="Search"
                         size={0.5}
                         color="White"
+                        spin={!state.postsFetched}
                         style={{transform: "scale(1.4)"}}
                     />
                 }
             />
             <div className={styles.posts}>
-                {mapPostsToPreviews()}
+                { mapPostsToPreviews() }
             </div>
         </div>
     );
