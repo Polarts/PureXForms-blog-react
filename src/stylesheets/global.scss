@@ -1,10 +1,15 @@
-@import 'common/index';
+@import 'config';
 
 body {
     margin: 0;
     background-color: $background;
 }
 
+.mdIcon {
+    width: 14rem;
+    height: 14rem;
+    transform: scale(1.3);
+}
 
 .profile {
     border-radius: 100%;

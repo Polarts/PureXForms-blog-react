@@ -101,10 +101,9 @@ const RecentPosts = (props) => {
                     <Icon 
                         path={state.postsFetched? mdiMagnify : mdiLoading}
                         title="Search"
-                        
                         color="White"
                         spin={!state.postsFetched}
-                        style={{transform: "scale(1.4)"}}
+                        className="mdIcon"
                     />
                 }
             />
