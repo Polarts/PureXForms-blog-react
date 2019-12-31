@@ -1,11 +1,8 @@
-$medias: (
-    tablet-large: 1030px,
-    tablet: 770px,
-    phone-wide: 425px,
-    phone-thin: 375px,
-    phone-tiny: 320px
-);
 
-@mixin respond-to($media) {
-    @media only screen and (max-width: map-get($map: $medias, $key: $media)) { @content; }
-}
+/// Breakpoints ///
+
+$tablet-large: 1030px;
+$tablet: 770px;
+$phone-wide: 425px;
+$phone-thin: 375px;
+$phone-tiny: 320px;

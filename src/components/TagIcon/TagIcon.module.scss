@@ -1,3 +1,6 @@
+
+/// TagIcon Module ///
+
 @import '../../stylesheets/global.scss';
 
 .container {
@@ -5,35 +8,9 @@
     height: 37px;
 
     &:hover {
-        .tooltip {
+        [class*=tooltip] {
             display: block;
         }
     }
-
-    .tooltip {
-        background-color: black;
-        color: white;
-        display: none;
-        margin: 0;
-        padding-bottom: 2px;
-        border-radius: 5px;
-        font-size: 14px;
-        position: relative;
-        
-        &::before{
-            content: "";
-            position: absolute;
-            top: -23%;
-            left: 50%;
-            transform: translateX(-50%); 
-            width: 0; 
-            height: 0; 
-
-            border-left: 5px solid transparent;
-            border-right: 5px solid transparent;
-
-            border-bottom: 5px solid black;
-        }
-        
-    }
+    
 }

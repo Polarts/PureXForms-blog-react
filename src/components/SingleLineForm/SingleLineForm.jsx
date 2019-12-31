@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import styles from './InputWithButton.module.scss';
+import styles from './SingleLineForm.module.scss';
 
 /**
  * A single-line input form that consists of one field and a submit button.
@@ -9,7 +9,7 @@ import styles from './InputWithButton.module.scss';
  * @param {Function} textChanged A text change callback. Must take a string parameter!
  * @param {Function} onSubmit A submission callback. Must take a string parameter!
  */
-const InputWithButton = (props) => {
+const SingleLineForm = (props) => {
 
     var inputRef = useRef(null);
 
@@ -52,4 +52,4 @@ const InputWithButton = (props) => {
     );
 }
 
-export default InputWithButton;
+export default SingleLineForm;

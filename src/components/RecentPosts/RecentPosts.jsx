@@ -4,7 +4,7 @@ import { mdiMagnify, mdiLoading } from '@mdi/js'
 import wpClient from '../../services/wordpress'
 import PostPreview from '../PostPreview/PostPreview';
 import styles from './RecentPosts.module.scss';
-import InputWithButton from '../InputWithButton/InputWithButton';
+import SingleLineForm from '../SingleLineForm/SingleLineForm';
 
 const RecentPosts = (props) => {
 
@@ -94,7 +94,7 @@ const RecentPosts = (props) => {
 
     return (
         <div className={styles.container}>
-            <InputWithButton 
+            <SingleLineForm 
                 placeholder="Find a post..."
                 onSubmit={searchSubmitted}
                 buttonContent={

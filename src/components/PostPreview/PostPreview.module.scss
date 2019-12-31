@@ -1,3 +1,6 @@
+
+/// PostPreview Module ///
+
 @import '../../stylesheets/global.scss';
 
 .container {
@@ -8,7 +11,7 @@
     margin: 15px;
 
     background-color: $emphasis;
-    box-shadow: 0px 0px 32px -8px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 32px -8px rgba(0, 0, 0, 0.75);
 
     .previewImage {
         position: absolute;

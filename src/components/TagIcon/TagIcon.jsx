@@ -13,7 +13,7 @@ const TagIcon = (props) => {
     return (
         <div className={styles.container}>
             <img src={tagImg} alt={props.tagName}/>
-            <span className={styles.tooltip}>
+            <span className="tooltip">
                 {props.tagName}
             </span>
         </div>

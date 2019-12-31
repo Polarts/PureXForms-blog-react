@@ -1,5 +1,11 @@
+
+/// Typography ///
+
+@import url('https://fonts.googleapis.com/css?family=PT+Mono|PT+Sans|PT+Sans+Caption&display=swap');
+
 html {
-    font-size: 1px;
+    // for using REM units, changes with accessibility features
+    font-size: 1px; 
 }
 
 h1 {
