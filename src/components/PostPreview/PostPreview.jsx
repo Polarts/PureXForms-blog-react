@@ -22,11 +22,16 @@ const PostPreview = (props) => {
                 </div>
                 <div className={styles.bottomBar}>
                     <div className={styles.tags}>
-                        {props.hasOwnProperty("tags") ? props.tags.filter(t => t !== "Uncategorized").map(t => <TagIcon tagName={t} key={t}/>) : null}
+                        {props.hasOwnProperty("tags") ? 
+                            props.tags.filter(t => t !== "Uncategorized")
+                                .map(t => 
+                                    <TagIcon tagName={t} key={t}/>
+                                ) 
+                            : null}
                     </div>
-                    <span className={styles.date}>
+                    <time dateTime={moment(props.date).format("YYYY-MM-DD")} className={styles.date}>
                         {moment(props.date).format("MMM Do, YYYY")}
-                    </span>
+                    </time>
                 </div>
             </div>
         </div>

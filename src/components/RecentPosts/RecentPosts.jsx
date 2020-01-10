@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
 import Icon from '@mdi/react'
 import { mdiMagnify, mdiLoading } from '@mdi/js'
-import wpClient from '../../services/wordpress'
+import { getPostsAsync } from '../../services/wordpress'
 import PostPreview from '../PostPreview/PostPreview';
 import styles from './RecentPosts.module.scss';
 import SingleLineForm from '../SingleLineForm/SingleLineForm';
@@ -41,28 +41,16 @@ const RecentPosts = (props) => {
 
     // #region effects
 
-    const getPostsAsync = () => new Promise(res => {
-        wpClient.getPosts(
-            { post_status: "publish" }, 
-            ["title", "excerpt", "terms", "date"], 
-            (err, psts) => {
-
-                if(err) {
-                    console.log(err);
-                    return;
-                }
-                var filteredPosts = psts.filter(p => p.title.includes(state.keywords));
-                res(filteredPosts);
-            }
-        );
-    })
-
-    const getPostsEffect = async () => {
-        var psts = await getPostsAsync();
-        dispatch({ type: "setPosts", posts: psts });
-    }
-
-    useEffect(() => { getPostsEffect() }, [state.keywords]);
+    useEffect(() => { 
+        /**
+         * Gets the posts filtered by keywords.
+         */
+        const getPostsEffect = async () => {
+            var posts = await getPostsAsync(state.keywords);
+            dispatch({ type: "setPosts", posts: posts });
+        }
+        getPostsEffect();
+    }, [state.keywords]);
 
     // #endregion
 
@@ -86,8 +74,8 @@ const RecentPosts = (props) => {
 
     // #region UI event callbacks
 
-    const searchSubmitted = kwds => {
-        dispatch({ type: "setKeywords", keywords: kwds })
+    const searchSubmitted = keywords => {
+        dispatch({ type: "setKeywords", keywords: keywords })
     }
 
     // #endregion
