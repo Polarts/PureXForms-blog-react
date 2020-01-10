@@ -1,30 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
+import React from 'react';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import './App.scss';
-import RecentPosts from './components/RecentPosts/RecentPosts';
-
+import Root from './routes/Root/Root';
 
 function App() {
 
-  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <RecentPosts/>
-        <p>
-          Edit <code>react-src/src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          <Root/>
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
