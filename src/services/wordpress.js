@@ -7,7 +7,9 @@ const wpClient = wp.createClient({
 })
 export default wpClient;
 
-export const getPostsAsync = (keywords) => new Promise(res => {
+// #region get functions
+
+export const getPostsAsync = (keywords) => new Promise(result => {
     wpClient.getPosts(
         { post_status: "publish" }, 
         ["title", "excerpt", "terms", "date"], 
@@ -18,7 +20,24 @@ export const getPostsAsync = (keywords) => new Promise(res => {
                 return;
             }
             var filteredPosts = psts.filter(p => p.title.toLowerCase().includes(keywords.toLowerCase()));
-            res(filteredPosts);
+            result(filteredPosts);
         }
     );
 });
+
+export const getPagesAsync = () => new Promise(result => {
+    wpClient.getPosts(
+        { post_status: "publish", post_type: "page" }, 
+        [], 
+        (err, pages) => {
+
+            if(err) {
+                console.log(err);
+                return;
+            }
+            result(pages);
+        }
+    );
+});
+
+// #endregion
