@@ -29,7 +29,7 @@ const ContactForm = () => {
         <form onSubmit={formSubmitted}>
             <div className="mailHeader">
                 <span className="inputLabel">Subject:</span>
-                <select>
+                <select placeholder="Pick a Subject"> 
                     <option value="complaint">Complaint</option>
                     <option value="compliment">Compliment</option>
                     <option value="siteFeedback">Site Feedback</option>
