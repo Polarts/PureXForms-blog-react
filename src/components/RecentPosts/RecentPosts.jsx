@@ -85,7 +85,9 @@ const RecentPosts = (props) => {
     // #region UI event callbacks
 
     const searchSubmitted = keywords => {
-        dispatch({ type: "setKeywords", keywords: keywords })
+        if (state.postsFetched) {
+            dispatch({ type: "setKeywords", keywords: keywords });
+        }
     }
 
     // #endregion
