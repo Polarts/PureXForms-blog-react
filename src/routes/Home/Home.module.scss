@@ -26,7 +26,7 @@ header {
         .floaters#{$i} {
             @extend %floaters;
             background-image: radial-gradient(circle, white 15%, transparent 100%),
-                url('../../res/floaters/#{$i}.svg');
+                url('../../res/svg/floaters/#{$i}.svg');
             z-index: #{$i*-1};
         }
     }

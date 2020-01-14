@@ -9,7 +9,7 @@ const TagIcon = (props) => {
     if (props.tagName === "Uncategorized") {
         return null;
     }
-    var tagImg = require("../../res/tags/"+props.tagName+".png");
+    var tagImg = require("../../res/png/tags/"+props.tagName+".png");
     return (
         <div className={styles.container}>
             <img src={tagImg} alt={props.tagName}/>

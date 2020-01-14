@@ -13,6 +13,9 @@ var tags;
 /**
  * Gets all the tags.
  * Tags are cached, so that if they're already fetched there's no need to fetch again.
+ * Requested fields: id, name
+ * 
+ * @returns an object mapped as { id: name }
  */
 export const getTagsAsync = () => new Promise( async (result) => {
     if (!tags) {
@@ -29,18 +32,14 @@ export const getTagsAsync = () => new Promise( async (result) => {
 
 /**
  * Gets summarized posts with pagination, filtered by keywords.
- * Posts are limited to the following fields:
- *  1. title
- *  2. excerpt
- *  3. tags
- *  4. date
- *  5. link
+ * Posts are not cached.
+ * Requested fields: title, excerpt, tags, date, link
  * 
  * @param {Object} query a search query object in wordpress api format.
  * @param {Number} perPage amount of posts to display per page. if no page is set, it will limit the total.
  * @param {Number} page current page index.
  * 
- * @returns 
+ * @returns an array of WP posts
  */
 export const getPostsAsync = (query, perPage, page) => new Promise( async (result) => {
     let url = BASE_URL + "posts?";
