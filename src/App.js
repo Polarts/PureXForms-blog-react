@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
-import './App.scss';
-import Root from './routes/Root/Root';
+import Home from './routes/Home/Home';
+import './stylesheets/global.scss';
 
 function App() {
 
@@ -10,7 +10,7 @@ function App() {
       <Switch>
 
         <Route exact path="/">
-          <Root/>
+          <Home/>
         </Route>
 
         <Route exact path="/about-author">

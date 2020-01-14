@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
 import Icon from '@mdi/react'
 import { mdiMagnify, mdiLoading } from '@mdi/js'
-import { getPostsAsync } from '../../services/wordpress'
+import { getPostsAsync } from '../../services/wordpress.service'
 import PostPreview from '../PostPreview/PostPreview';
 import styles from './RecentPosts.module.scss';
 import SingleLineForm from '../SingleLineForm/SingleLineForm';
