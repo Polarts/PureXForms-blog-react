@@ -1,11 +1,18 @@
 
 /// Shapes ///
 
-[class*=shape] {
+.shape {
+    width: 0;
+    height: 0;
 
+    &.triangle {
+        &.left {
+            border-bottom: 70px solid $background;
+            border-right: 170px solid transparent;
+        }
+        &.right {
+            border-bottom: 70px solid $background;
+            border-left: 170px solid transparent;
+        }
+    }
 }
-
-// #region triangles
-
-
-// #region

@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
 import Icon from '@mdi/react'
 import { mdiMagnify, mdiLoading } from '@mdi/js'
-import { getPostsAsync } from '../../services/wordpress.service'
+import { getPostsAsync, getTagsAsync } from '../../services/wordpress.service'
 import PostPreview from '../PostPreview/PostPreview';
 import styles from './RecentPosts.module.scss';
 import SingleLineForm from '../SingleLineForm/SingleLineForm';
@@ -24,6 +24,11 @@ const RecentPosts = (props) => {
                     keywords: action.keywords,
                     postsFetched: false
                 };
+            case "init":
+                return {
+                    ...state,
+                    tags: action.tags
+                }
             default: 
                 throw new Error("Invalid action "+action.type);
         }
@@ -32,6 +37,7 @@ const RecentPosts = (props) => {
     const [state, dispatch] = useReducer(reducer, 
         {
             posts: [],
+            tags: {},
             postsFetched: false,
             keywords: ""
         }
@@ -41,15 +47,20 @@ const RecentPosts = (props) => {
 
     // #region effects
 
-    useEffect(() => { 
-        /**
-         * Gets the posts filtered by keywords.
-         */
-        const getPostsEffect = async () => {
-            var posts = await getPostsAsync(state.keywords);
-            dispatch({ type: "setPosts", posts: posts });
-        }
-        getPostsEffect();
+    /** Init effect */
+    useEffect(() => {
+        (async () => {
+            await getTagsAsync()
+                .then(res => dispatch({type: "init", tags: res}));
+        })()
+    }, []);
+
+    /** Get posts effect */
+    useEffect(() => {
+        (async () => {
+            await getPostsAsync({search: state.keywords})
+                .then(res => dispatch({ type: "setPosts", posts: res }));
+        })() 
     }, [state.keywords]);
 
     // #endregion
@@ -57,13 +68,12 @@ const RecentPosts = (props) => {
     // #region UI functions
 
     const mapPostsToPreviews = () => {
-        console.log(state.posts)
         return state.posts.map(p => 
             <PostPreview 
-                key={p.title}
-                title={p.title}
-                excerpt={p.excerpt}
-                tags={p.terms.map(t => t.name)}
+                key={p.title + p.date}
+                title={p.title.rendered}
+                excerpt={p.excerpt.rendered}
+                tags={p.tags.map(id => state.tags.hasOwnProperty(id) ? state.tags[id] : "Uncategorized")}
                 date={p.date}
                 previewImgUrl=""
             />

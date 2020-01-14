@@ -1,3 +1,43 @@
 
 /// Home Page Module ///
 
+$header-height: 250px;
+
+header {
+    background-color: white;
+    height: $header-height;
+    overflow: hidden;
+    position: relative;
+
+    .logo {
+        width: 380px;
+        margin: 0 auto;
+    }
+
+    // base class for floaters
+    %floaters {
+        width: 120vw;
+        margin-left: -10vw;
+        height: $header-height;
+    }
+    
+    // Each floater layer has its own class because they all have a different background-image and z-index.
+    @for $i from 1 through 4 {
+        .floaters#{$i} {
+            @extend %floaters;
+            background-image: radial-gradient(circle, white 15%, transparent 100%),
+                url('../../res/floaters/#{$i}.svg');
+            z-index: #{$i*-1};
+        }
+    }
+
+    .triangles {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+    }
+}
+
+

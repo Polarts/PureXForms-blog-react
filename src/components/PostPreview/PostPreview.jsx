@@ -2,6 +2,7 @@ import React from 'react';
 import TagIcon from '../TagIcon/TagIcon';
 import styles from './PostPreview.module.scss';
 import moment from 'moment';
+import ReactHtmlParser from 'react-html-parser';
 
 /**
  * A post preview seen from the home page.
@@ -18,7 +19,7 @@ const PostPreview = (props) => {
             <div className={styles.contents}>    
                 <div className={styles.summary}>
                     <h2>{props.title}</h2>
-                    <p>{props.excerpt}</p>
+                    {ReactHtmlParser(props.excerpt)}
                 </div>
                 <div className={styles.bottomBar}>
                     <div className={styles.tags}>

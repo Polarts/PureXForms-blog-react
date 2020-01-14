@@ -1,43 +1,69 @@
-import * as wp from 'wordpress';
+import * as ax from 'axios';
 
-const wpClient = wp.createClient({
-    url: "pxf.local",
-    username: "admin",
-    password: "admin"
-})
-export default wpClient;
+const BASE_URL = "/wp-json/wp/v2/";
+
+// #region cache
+
+var tags;
+
+// #endregion
 
 // #region get functions
 
-export const getPostsAsync = (keywords) => new Promise(result => {
-    wpClient.getPosts(
-        { post_status: "publish" }, 
-        ["title", "excerpt", "terms", "date"], 
-        (err, psts) => {
-
-            if(err) {
-                console.log(err);
-                return;
-            }
-            var filteredPosts = psts.filter(p => p.title.toLowerCase().includes(keywords.toLowerCase()));
-            result(filteredPosts);
-        }
-    );
+/**
+ * Gets all the tags.
+ * Tags are cached, so that if they're already fetched there's no need to fetch again.
+ */
+export const getTagsAsync = () => new Promise( async (result) => {
+    if (!tags) {
+        let url = BASE_URL + "tags?_fields=id,name";
+        tags = {};
+        await ax.get(url).then(response => {
+            response.data.forEach(tag =>
+                tags[tag.id] = tag.name
+            );
+        });
+    }
+    result(tags);
 });
 
-export const getPagesAsync = () => new Promise(result => {
-    wpClient.getPosts(
-        { post_status: "publish", post_type: "page" }, 
-        [], 
-        (err, pages) => {
-
-            if(err) {
-                console.log(err);
-                return;
+/**
+ * Gets summarized posts with pagination, filtered by keywords.
+ * Posts are limited to the following fields:
+ *  1. title
+ *  2. excerpt
+ *  3. tags
+ *  4. date
+ *  5. link
+ * 
+ * @param {Object} query a search query object in wordpress api format.
+ * @param {Number} perPage amount of posts to display per page. if no page is set, it will limit the total.
+ * @param {Number} page current page index.
+ * 
+ * @returns 
+ */
+export const getPostsAsync = (query, perPage, page) => new Promise( async (result) => {
+    let url = BASE_URL + "posts?";
+    
+    if (query) {
+        Object.entries(query).forEach(e => {
+            if(e[1]) {
+                url += e[0] + "=" + e[1] + "&";
             }
-            result(pages);
-        }
-    );
+        });
+    }
+
+    url += "_fields=title,excerpt,tags,date,link&";
+
+    if (perPage) {
+        url += "per_page=" + String(perPage) + "&";
+    }
+
+    if (page) {
+        url += "page=" + String(page);
+    }
+
+    await ax.get(url).then(response => result(response.data));
 });
 
 // #endregion
