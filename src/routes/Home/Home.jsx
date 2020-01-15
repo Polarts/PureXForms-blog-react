@@ -15,8 +15,8 @@ const Home = () => (
             <div className={styles.floaters4} data-depth="0.4"></div>
         </ParallaxScene>
         <div className={styles.triangles}>
-            <div className="shape triangle left"></div>
-            <div className="shape triangle right"></div>
+            <div className={styles.triangleLeft}></div>
+            <div className={styles.triangleRight}></div>
         </div>
     </header>
     <main>

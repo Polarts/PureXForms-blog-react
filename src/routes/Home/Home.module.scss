@@ -1,6 +1,9 @@
 
 /// Home Page Module ///
 
+@import '../../stylesheets/local/partials/shapes';
+@import '../../stylesheets/config/colors';
+
 $header-height: 250px;
 
 header {
@@ -37,6 +40,18 @@ header {
         width: 100%;
         position: absolute;
         bottom: 0;
+
+        $width: 300px;
+        $height: 120px;
+
+        .triangleLeft {
+            @include triangle-left($width, $height, $background)
+        }
+
+        .triangleRight {
+            @include triangle-right($width, $height, $background)
+        }
+
     }
 }
 

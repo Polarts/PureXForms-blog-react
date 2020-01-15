@@ -31,17 +31,15 @@ export const getTagsAsync = () => new Promise( async (result) => {
 });
 
 /**
- * Gets summarized posts with pagination, filtered by keywords.
+ * Gets summarized posts with query params.
  * Posts are not cached.
  * Requested fields: title, excerpt, tags, date, link
  * 
- * @param {Object} query a search query object in wordpress api format.
- * @param {Number} perPage amount of posts to display per page. if no page is set, it will limit the total.
- * @param {Number} page current page index.
+ * @param {Object} query a query params object in wordpress api format.
  * 
  * @returns an array of WP posts
  */
-export const getPostsAsync = (query, perPage, page) => new Promise( async (result) => {
+export const getPostsAsync = (query) => new Promise( async (result) => {
     let url = BASE_URL + "posts?";
     
     if (query) {
@@ -52,15 +50,7 @@ export const getPostsAsync = (query, perPage, page) => new Promise( async (resul
         });
     }
 
-    url += "_fields=title,excerpt,tags,date,link&";
-
-    if (perPage) {
-        url += "per_page=" + String(perPage) + "&";
-    }
-
-    if (page) {
-        url += "page=" + String(page);
-    }
+    url += "_fields=title,excerpt,tags,date,link";
 
     await ax.get(url).then(response => result(response.data));
 });

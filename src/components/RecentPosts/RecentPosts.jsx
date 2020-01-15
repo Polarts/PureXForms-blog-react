@@ -38,6 +38,7 @@ const RecentPosts = (props) => {
         {
             posts: [],
             tags: {},
+            perPage: 4,
             postsFetched: false,
             keywords: ""
         }
@@ -58,10 +59,10 @@ const RecentPosts = (props) => {
     /** Get posts effect */
     useEffect(() => {
         (async () => {
-            await getPostsAsync({search: state.keywords})
+            await getPostsAsync({search: state.keywords, per_page: state.perPage})
                 .then(res => dispatch({ type: "setPosts", posts: res }));
         })() 
-    }, [state.keywords]);
+    }, [state.keywords, state.perPage]);
 
     // #endregion
 
