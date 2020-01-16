@@ -77,6 +77,7 @@ const RecentPosts = (props) => {
                 tags={p.tags.map(id => state.tags.hasOwnProperty(id) ? state.tags[id] : "Uncategorized")}
                 date={p.date}
                 previewImgUrl=""
+                slug={p.slug}
             />
         );
     }

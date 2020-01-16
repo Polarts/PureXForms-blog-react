@@ -3,6 +3,7 @@ import TagIcon from '../TagIcon/TagIcon';
 import styles from './PostPreview.module.scss';
 import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser';
+import { useHistory } from "react-router-dom";
 
 /**
  * A post preview seen from the home page.
@@ -11,10 +12,20 @@ import ReactHtmlParser from 'react-html-parser';
  * @param {String[]} tags Array of the post tags.
  * @param {String} date The date it was posted, stringified.
  * @param {String} previewImgUrl URL of the preview image.
+ * @param {String} slug post slug for rediirection.
  */
 const PostPreview = (props) => {
+
+    const history = useHistory();
+
+    const previewClicked = () => {
+        if (props.hasOwnProperty("slug")) {
+            history.push("/post/"+props.slug);
+        }
+    }
+
     return (
-        <div className={styles.container}>
+        <div className={styles.container} onClick={previewClicked}>
             <img className={styles.previewImage} src={props.previewImgUrl} alt={props.title+" preview"}/>
             <div className={styles.contents}>    
                 <div className={styles.summary}>

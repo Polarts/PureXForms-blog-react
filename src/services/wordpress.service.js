@@ -35,7 +35,7 @@ export const getTagsAsync = () => new Promise(
 /**
  * Gets summarized posts with query params.
  * Posts are dynamic, so they're not cached.
- * Requested fields: title, excerpt, tags, date, link
+ * Requested fields: title, excerpt, tags, date, slug
  * 
  * @param {Object} query a query params object in wordpress api format.
  * 
@@ -46,17 +46,32 @@ export const getPostsAsync = (query) => new Promise(
         let url = BASE_URL + "posts?";
         
         if (query) {
-            Object.entries(query).forEach(e => {
-                if(e[1]) {
-                    url += e[0] + "=" + e[1] + "&";
-                }
-            });
+           url = mapObjectToQueryString(url, query);
         }
 
-        url += "_fields=title,excerpt,tags,date,link";
+        url += "_fields=title,excerpt,tags,date,slug";
 
         await ax.get(url).then(response => result(response.data));
     }
 );
+
+// #endregion
+
+// #region helper functions
+
+/**
+ * Maps an object of query params into a query string.
+ * 
+ * @param {String} baseUrl The base URL to generate query string from 
+ * @param {*} qObject the object of query param key-value pairs 
+ */
+const mapObjectToQueryString = (baseUrl, qObject) => {
+    Object.entries(qObject).forEach(e => {
+        if(e[1]) {
+            baseUrl += e[0] + "=" + e[1] + "&";
+        }
+    })
+    return baseUrl;
+}
 
 // #endregion

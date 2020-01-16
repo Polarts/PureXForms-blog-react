@@ -41,6 +41,17 @@
         color: black;
 
         .summary {
+
+            max-height: 120px;
+            overflow: hidden;
+
+            transition: all 0.2s;
+
+            &:hover {
+                max-height: 250px;
+                overflow-y: scroll;
+            }
+
             h2 {
                 margin: 10px 5px;
                 color: black;
