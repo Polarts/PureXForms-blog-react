@@ -24,6 +24,14 @@ const PostPreview = (props) => {
         }
     }
 
+    const renderTags = () => {
+        if (props.hasOwnProperty("tags")) {
+            console.log(props.tags);
+            props.tags.filter(t => t !== "Uncategorized")
+                .map(t => <TagIcon tagName={t} key={t}/>);
+        }
+    }
+
     return (
         <div className={styles.container} onClick={previewClicked}>
             <img className={styles.previewImage} src={props.previewImgUrl} alt={props.title+" preview"}/>
@@ -34,14 +42,7 @@ const PostPreview = (props) => {
                 </div>
                 <div className={styles.bottomBar}>
                     <div className={styles.tags}>
-                        {
-                            props.hasOwnProperty("tags") ? 
-                                props.tags.filter(t => t !== "Uncategorized")
-                                    .map(t => 
-                                        <TagIcon tagName={t} key={t}/>
-                                    ) 
-                                : null
-                        }
+                        {renderTags()}
                     </div>
                     <time dateTime={moment(props.date).format("YYYY-MM-DD")} className={styles.date}>
                         { moment(props.date).format("MMM Do, YYYY") }
