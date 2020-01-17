@@ -1,9 +1,12 @@
+import styles from './Home.module.scss';
 import React from 'react';
+import { ReactComponent as Logo } from '../../res/svg/Logo.svg';
+import Icon from '@mdi/react'
+import { mdiAccountCircle, mdiWeb, mdiChevronLeft, mdiChevronRight } from '@mdi/js'
 import RecentPosts from '../../components/RecentPosts/RecentPosts';
 import ParallaxScene from '../../components/ParallaxScene/ParallaxScene';
-import styles from './Home.module.scss';
-import { ReactComponent as Logo } from '../../res/svg/Logo.svg';
 import SloganRandomizer from '../../components/SloganRandomizer/SloganRandomizer';
+import IconLink from '../../components/IconLink/IconLink';
 
 const Home = () => (
     <>
@@ -16,13 +19,29 @@ const Home = () => (
             <div className={styles.floaters4} data-depth="0.4"></div>
         </ParallaxScene>
         <div className={styles.triangles}>
-            <div className={styles.triangleLeft}></div>
-            <div className={styles.triangleRight}></div>
+            <svg viewBox="0, 0, 300, 120">
+                <polygon points="0,0 0,120 300,120"/>
+            </svg>
+            <svg viewBox="0, 0, 300, 120">
+                <polygon points="0,120 300,120 300,0"/>
+            </svg>
         </div>
     </header>
     <main>
-        <div className={styles.titleAndNav}>
+        <div className={styles.sloganAndNav}>
+            <IconLink 
+                label="About Blog"
+                link="/about-blog"
+                icon={mdiWeb}
+                direction="left"
+            />
             <SloganRandomizer/>
+            <IconLink
+                label="About Author"
+                link="/about-author"
+                icon={mdiAccountCircle}
+                direction="right"
+            />
         </div>
         <RecentPosts/>
     </main>

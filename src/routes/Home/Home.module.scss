@@ -1,8 +1,8 @@
 
 /// Home Page Module ///
 
-@import '../../stylesheets/local/partials/shapes';
 @import '../../stylesheets/config/colors';
+@import '../../stylesheets/config/breakpoints';
 
 $header-height: 250px;
 
@@ -41,15 +41,9 @@ header {
         position: absolute;
         bottom: 0;
 
-        $width: 300px;
-        $height: 120px;
-
-        .triangleLeft {
-            @include triangle-left($width, $height, $background)
-        }
-
-        .triangleRight {
-            @include triangle-right($width, $height, $background)
+        svg {
+            fill: $background;
+            width: 25%;
         }
 
     }
@@ -57,11 +51,21 @@ header {
 
 main {
 
-    .titleAndNav {
+    .sloganAndNav {
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
+        margin: 0 10%;
+
+        @media screen and (max-width: $tablet) {
+            margin: 0;
+        }
+
+        @media screen and (max-width: ) {
+            
+        }
+
     }
 
 }
