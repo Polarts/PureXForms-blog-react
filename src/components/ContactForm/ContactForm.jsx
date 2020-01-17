@@ -29,7 +29,7 @@ const ContactForm = () => {
         <form onSubmit={formSubmitted}>
             <div className="mailHeader">
                 <span className="input-label">Subject:</span>
-                <select className="rounded dropdown" placeholder="Pick a Subject"> 
+                <select className="u-rounded dropdown" placeholder="Pick a Subject"> 
                     <option value="complaint">Complaint</option>
                     <option value="compliment">Compliment</option>
                     <option value="siteFeedback">Site Feedback</option>
@@ -52,7 +52,7 @@ const ContactForm = () => {
                 <div className="textLimitAndButton">
                     <span>{messageBody.length + "/250"}</span>
                     <input 
-                        className="rounded primary button" 
+                        className="u-rounded primary button" 
                         type="submit" 
                         value="Send"
                     />

@@ -2,7 +2,6 @@
 /// Buttons ///
 
 .button {
-    @extend %roundable;
 
     outline: none;
     transition: all 0.3s;
