@@ -1,0 +1,18 @@
+
+/// SloganRandomizer module ///
+
+@import '../../stylesheets/config/colors';
+
+.container {
+    text-align: center;
+
+    h2 {
+        font-weight: normal;
+        color: $emphasis;
+    }
+
+    h3 {
+        font-weight: normal;
+        margin-top: -10px;
+    }
+}

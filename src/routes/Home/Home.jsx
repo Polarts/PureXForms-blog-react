@@ -3,6 +3,7 @@ import RecentPosts from '../../components/RecentPosts/RecentPosts';
 import ParallaxScene from '../../components/ParallaxScene/ParallaxScene';
 import styles from './Home.module.scss';
 import { ReactComponent as Logo } from '../../res/svg/Logo.svg';
+import SloganRandomizer from '../../components/SloganRandomizer/SloganRandomizer';
 
 const Home = () => (
     <>
@@ -20,6 +21,9 @@ const Home = () => (
         </div>
     </header>
     <main>
+        <div className={styles.titleAndNav}>
+            <SloganRandomizer/>
+        </div>
         <RecentPosts/>
     </main>
     </>
