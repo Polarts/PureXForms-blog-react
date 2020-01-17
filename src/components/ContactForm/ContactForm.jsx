@@ -28,8 +28,8 @@ const ContactForm = () => {
     return (
         <form onSubmit={formSubmitted}>
             <div className="mailHeader">
-                <span className="inputLabel">Subject:</span>
-                <select placeholder="Pick a Subject"> 
+                <span className="input-label">Subject:</span>
+                <select className="rounded dropdown" placeholder="Pick a Subject"> 
                     <option value="complaint">Complaint</option>
                     <option value="compliment">Compliment</option>
                     <option value="siteFeedback">Site Feedback</option>
@@ -37,10 +37,10 @@ const ContactForm = () => {
                     <option value="request">Request</option>
                     {/* <option value="jobOffer">Job Offer</option> */}
                 </select>
-                <span className="inputLabel">Email:</span>
+                <span className="input-label">Email:</span>
                 <input type="email"/>
             </div>
-            <span className="inputLabel">Message Body:</span>
+            <span className="input-label">Message Body:</span>
             <div className="messageContainer">
                 <textarea 
                     cols="100" 
@@ -51,7 +51,11 @@ const ContactForm = () => {
                 />
                 <div className="textLimitAndButton">
                     <span>{messageBody.length + "/250"}</span>
-                    <input type="submit" value="Send"/>
+                    <input 
+                        className="rounded primary button" 
+                        type="submit" 
+                        value="Send"
+                    />
                 </div>
             </div>
         </form>

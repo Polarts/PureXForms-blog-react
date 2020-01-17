@@ -40,12 +40,13 @@ const SingleLineForm = (props) => {
     return (
         <div className={styles.singleLineForm}>
             <input 
+                className="rounded textbox"
                 type={props.type} 
                 onChange={textChanged} 
                 placeholder={props.placeholder}
                 ref={inputRef}
             />
-            <button onClick={onSubmit}>
+            <button className="rounded primary button" onClick={onSubmit}>
                 {props.buttonContent}
             </button>
         </div>

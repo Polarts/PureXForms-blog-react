@@ -1,7 +1,7 @@
 
 /// SingleLineForm Module ///
 
-@import '../../stylesheets/global.scss';
+@import '../../stylesheets/config/colors';
 
 .singleLineForm {
     position: relative;
@@ -13,38 +13,13 @@
         position: absolute;
         left: 0;
         width: inherit;
-        padding-left: 10px;
         font-size: inherit;
-
-        border: 1px solid transparent;
-        border-radius: 20px;
-        outline: none;
-
-        transition: border 0.5s;
-
-        &:focus {
-            border: 1px solid $emphasis;
-        }
     }
 
     button {
         position: absolute;
         right: -15px;
         font-size: inherit;
-        
-        border: 1px solid transparent;
-        border-radius: 20px;
-        outline: none;
-        
-        background-color: $emphasis;
-        color: white;
-
-        transition: all 0.3s;
-
-        &:hover {
-            background: darken($color: $emphasis, $amount: 10%);
-            cursor: pointer;
-        }
     }
 
 }

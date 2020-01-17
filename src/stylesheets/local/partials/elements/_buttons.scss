@@ -1,0 +1,25 @@
+
+/// Buttons ///
+
+.button {
+    @extend %roundable;
+
+    outline: none;
+    transition: all 0.3s;
+    
+    &:hover {
+        cursor: pointer;
+    }
+
+    &.primary {
+        background-color: $emphasis;
+        color: white;
+    
+        &:hover {
+            background-color: darken($emphasis, 10%);
+        }
+    }
+
+}
+
+

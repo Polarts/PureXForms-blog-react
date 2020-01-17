@@ -1,0 +1,28 @@
+
+/// Input Elements ///
+
+%input-base {
+    @extend %roundable;
+    padding-left: 10rem;
+    outline: none;
+}
+
+.input-label {
+    font-size: 16rem;
+    font-weight: bold;
+}
+
+.textbox {
+    @extend %input-base;
+    transition: border 0.5s;
+
+    &:focus {
+        border: 1px solid $emphasis;
+    }
+}
+
+.dropdown {
+    @extend %input-base;
+
+
+}
