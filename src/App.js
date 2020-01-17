@@ -1,7 +1,8 @@
+import './stylesheets/global.scss';
 import React from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import Home from './routes/Home/Home';
-import './stylesheets/global.scss';
+import Post from './routes/Post/Post';
 
 function App() {
 
@@ -22,7 +23,7 @@ function App() {
         </Route>
 
         <Route exact path="/post/:slug">
-          <h1>Post!</h1>
+          <Post/>
         </Route>
 
         <Route exact path="*">
