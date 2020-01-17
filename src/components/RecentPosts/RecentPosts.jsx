@@ -59,8 +59,10 @@ const RecentPosts = (props) => {
     /** Get posts effect */
     useEffect(() => {
         (async () => {
-            await getPostsAsync({search: state.keywords, per_page: state.perPage})
-                .then(res => dispatch({ type: "setPosts", posts: res }));
+            await getPostsAsync(
+                    {search: state.keywords, per_page: state.perPage},
+                    ["title", "excerpt", "tags", "date", "slug"]
+                ).then(res => dispatch({ type: "setPosts", posts: res }));
         })() 
     }, [state.keywords, state.perPage]);
 

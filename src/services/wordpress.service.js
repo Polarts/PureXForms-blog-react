@@ -35,13 +35,13 @@ export const getTagsAsync = () => new Promise(
 /**
  * Gets summarized posts with query params.
  * Posts are dynamic, so they're not cached.
- * Requested fields: title, excerpt, tags, date, slug
  * 
  * @param {Object} query a query params object in wordpress api format.
+ * @param {Array<String>} fields an array of fields to return in each post.
  * 
  * @returns a promise for an array of WP posts
  */
-export const getPostsAsync = (query) => new Promise( 
+export const getPostsAsync = (query, fields) => new Promise( 
     async (result) => {
         let url = BASE_URL + "posts?";
         
@@ -49,7 +49,9 @@ export const getPostsAsync = (query) => new Promise(
            url = mapObjectToQueryString(url, query);
         }
 
-        url += "_fields=title,excerpt,tags,date,slug";
+        if(fields) {
+            url += "_fields="+fields.join(",");
+        }
 
         await ax.get(url).then(response => result(response.data));
     }
