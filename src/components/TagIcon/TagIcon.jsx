@@ -9,10 +9,19 @@ const TagIcon = (props) => {
     if (props.tagName === "Uncategorized") {
         return null;
     }
-    var tagImg = require("../../res/png/tags/"+props.tagName+".png");
+
+    const renderTag = () => {
+        try {
+            var tagImg = require("../../res/png/tags/"+props.tagName+".png");
+            return <img src={tagImg} alt={props.tagName}/>
+        } catch {
+            return <div className={styles.letterTag}>{props.tagName.charAt(0)}</div>
+        }
+
+    }
     return (
         <div className={styles.container}>
-            <img src={tagImg} alt={props.tagName}/>
+            {renderTag()}
             <span className="tooltip">
                 {props.tagName}
             </span>

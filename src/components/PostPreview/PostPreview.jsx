@@ -26,9 +26,7 @@ const PostPreview = (props) => {
 
     const renderTags = () => {
         if (props.hasOwnProperty("tags")) {
-            console.log(props.tags);
-            props.tags.filter(t => t !== "Uncategorized")
-                .map(t => <TagIcon tagName={t} key={t}/>);
+            return props.tags.map(t => <TagIcon tagName={t} key={t}/>);
         }
     }
 
