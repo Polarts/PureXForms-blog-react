@@ -1,6 +1,8 @@
 
 /// TagIcon Module ///
 
+@import '../../stylesheets/config/colors';
+
 .container {
     position: relative;
     height: 20px;
@@ -10,6 +12,17 @@
             display: block;
             margin-top: 5px;
         }
+    }
+
+    .letterTag {
+        width: 20px;
+        height: 20px;
+
+        background-color: $emphasis;
+        color: white;
+        border-radius: 90px;
+
+        font-size: 18rem;
     }
     
 }
