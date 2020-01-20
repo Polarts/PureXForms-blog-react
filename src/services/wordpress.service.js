@@ -20,7 +20,7 @@ var tags;
 export const getTagsAsync = () => new Promise( 
     async (result) => {
         if (!tags) {
-            let url = BASE_URL+ "tags?_fields=id,name";
+            let url = BASE_URL+ "tags?_fields=id,name&per_page=100";
             tags = {};
             await ax.get(url).then(response => {
                 console.log(response.data)
