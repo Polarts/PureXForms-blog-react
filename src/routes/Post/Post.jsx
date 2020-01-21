@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
-import { getPostsAsync } from '../../services/wordpress.service';
+import { getPostsAsync, getUsersAsync, getCommentsAsync } from '../../services/wordpress.service';
 
 const Post = () => {
 
@@ -20,37 +20,56 @@ const Post = () => {
 
     // Init effect
     useEffect(() => {
-        getPostsAsync({slug: slug}, ["title", "author", "date", "categories", "tags", "featured_media"])
-            .then(meta => {
-                console.log(meta);
-                setPostMeta(meta[0]);
+        getPostsAsync({slug: slug}, ["id", "title", "author", "date", "categories", "tags", "featured_media"])
+            .then(data => {
+                console.log(data);
+                setPostMeta(data[0]);
             });
     }, [slug]);
 
     // get author effect
     useEffect(() => {
-        if(postMeta !== null) {
-
+        if(postMeta) {
+            getUsersAsync({id: postMeta.author}, ["first_name", "last_name", "description", "roles"])
+                .then(data => {
+                    console.log(data);
+                    setAuthor(data[0]);
+                })
         }
     }, [postMeta]);
 
     // get content effect
     useEffect(() => {
-        if (postMeta !== null) {
+        if (postMeta) {
             getPostsAsync({slug: slug}, ["content"])
-                .then(response => {
-                    console.log(response);
-                    setPostContent(response[0].content.rendered);
+                .then(data => {
+                    console.log(data);
+                    setPostContent(data[0].content.rendered);
                 });
         }
     }, [postMeta, slug]);
+
+    // get comments effect
+    useEffect(() => {
+        if (postMeta) {
+            getCommentsAsync(postMeta.id)
+                .then(data => {
+                    console.log(data);
+                    setComments(data);
+                });
+        }
+    })
 
     // #endregion
 
     return (
         <>
+        <header>
             <h1>{postMeta ? postMeta.title.rendered : slug}</h1>
+        </header>
+        <main>
             {ReactHtmlParser(postContent)}
+        </main>
         </>
     )
 }

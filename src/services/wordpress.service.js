@@ -34,7 +34,7 @@ export const getTagsAsync = () => new Promise(
 );
 
 /**
- * Gets summarized posts with query params.
+ * Gets posts with specified query params and fields.
  * Posts are dynamic, so they're not cached.
  * 
  * @param {Object} query a query params object in wordpress api format.
@@ -54,6 +54,45 @@ export const getPostsAsync = (query, fields) => new Promise(
             url += "_fields="+fields.join(",");
         }
 
+        await ax.get(url).then(response => result(response.data));
+    }
+);
+
+/**
+ * Gets users with specified query params and fields.
+ * Users are dynamic, so they're not cached.
+ * 
+ * @param {Object} query a query params object in wordpress api format.
+ * @param {Array<String>} fields an array of fields to return in each user.
+ * 
+ * @returns a promise for an array of WP users
+ */
+export const getUsersAsync = (query, fields) => new Promise( 
+    async (result) => {
+        let url = BASE_URL + "users?";
+        
+        if (query) {
+           url = mapObjectToQueryString(url, query);
+        }
+
+        if(fields) {
+            url += "_fields="+fields.join(",");
+        }
+
+        await ax.get(url).then(response => result(response.data));
+    }
+);
+
+/**
+ * Gets comments for a specific post, with only the relevant data.
+ * 
+ * @param {String} postId The post's ID.
+ * 
+ * @returns a promise for an array of WP comments.
+ */
+export const getCommentsAsync = (postId) => new Promise( 
+    async (result) => {
+        let url = BASE_URL + `users?post=${postId}&_fields=author_name,author_email,content,date`;
         await ax.get(url).then(response => result(response.data));
     }
 );
