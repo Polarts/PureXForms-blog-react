@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
+import moment from 'moment';
 import { getPostsAsync, getUsersAsync, getCommentsAsync } from '../../services/wordpress.service';
+import styles from './Post.module.scss';
 
 const Post = () => {
 
@@ -62,13 +64,38 @@ const Post = () => {
 
     // #endregion
 
+    // #region inner renderers
+
+    const metaContentRenderer = () => {
+        if (postMeta) {
+            return (
+                <div className={styles.metaContent}>
+                    <img src={postMeta.featured_media} alt={`${postMeta.title} preview`}/>
+                    <div className={styles.tagsAndDate}>
+                        <div className={styles.tags}>
+                            {postMeta.tags}
+                        </div>
+                        <div className={styles.date}>
+                            { moment(postMeta.date).format("MMM Do, YYYY") }
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+    }
+
+    // #endregion
+
     return (
         <>
         <header>
             <h1>{postMeta ? postMeta.title.rendered : slug}</h1>
         </header>
-        <main>
-            {ReactHtmlParser(postContent)}
+        <main className={styles.main}>
+            { metaContentRenderer() }
+            <div className={styles.postContent}>
+                {ReactHtmlParser(postContent)}
+            </div>
         </main>
         </>
     )
