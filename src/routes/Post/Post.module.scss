@@ -2,16 +2,18 @@
 /// Post module ///
 
 .main {
-
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-template-areas: 
-        "meta content";
+    margin: 0 5%;
 
     .metaContent {
-        grid-area: meta;
         display: flex;
         flex-direction: column;
+        align-items: center;
+        float: right;
+        min-width: 33vw;
+
+        img {
+            width: 300px;
+        }
 
         .tagsAndDate {
             display: flex;
@@ -36,9 +38,6 @@
     }
 
     .postContent {
-        grid-area: content;
-        max-width: 75vw;
-        margin-right: 5%;
     }
 
 }

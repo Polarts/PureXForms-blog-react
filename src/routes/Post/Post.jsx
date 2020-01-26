@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
-import moment from 'moment';
+import DateFormatter from '../../components/DateFormatter/DateFormatter';
 import { getPostsAsync, getUsersAsync, getCommentsAsync } from '../../services/wordpress.service';
 import styles from './Post.module.scss';
 
@@ -66,18 +66,17 @@ const Post = () => {
 
     // #region inner renderers
 
+    
     const metaContentRenderer = () => {
         if (postMeta) {
             return (
                 <div className={styles.metaContent}>
-                    <img src={postMeta.featured_media} alt={`${postMeta.title} preview`}/>
+                    <img src={"https://i7.pngguru.com/preview/343/207/672/iphone-x-iphone-8-plus-iphone-7-apple-iphone.jpg"} alt={`${postMeta.title} preview`}/>
                     <div className={styles.tagsAndDate}>
                         <div className={styles.tags}>
                             {postMeta.tags}
                         </div>
-                        <div className={styles.date}>
-                            { moment(postMeta.date).format("MMM Do, YYYY") }
-                        </div>
+                        <DateFormatter date={postMeta.date}/>
                     </div>
                 </div>
             )

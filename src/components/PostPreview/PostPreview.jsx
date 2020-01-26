@@ -1,9 +1,9 @@
 import React from 'react';
 import TagIcon from '../TagIcon/TagIcon';
 import styles from './PostPreview.module.scss';
-import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser';
 import { useHistory } from "react-router-dom";
+import DateFormatter from '../DateFormatter/DateFormatter';
 
 /**
  * A post preview seen from the home page.
@@ -42,9 +42,7 @@ const PostPreview = (props) => {
                     <div className={styles.tags}>
                         {renderTags()}
                     </div>
-                    <time dateTime={moment(props.date).format("YYYY-MM-DD")} className={styles.date}>
-                        { moment(props.date).format("MMM Do, YYYY") }
-                    </time>
+                    <DateFormatter date={props.date}/>
                 </div>
             </div>
         </div>
