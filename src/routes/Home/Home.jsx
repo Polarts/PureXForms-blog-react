@@ -9,7 +9,7 @@ import IconLink from '../../components/IconLink/IconLink';
 
 const Home = () => (
     <>
-    <header>
+    <header className={styles.header}>
         <ParallaxScene>
             <Logo className={styles.logo} data-depth="0.5"/>
             <div className={styles.floaters1} data-depth="0.1"></div>
@@ -26,7 +26,7 @@ const Home = () => (
             </svg>
         </div>
     </header>
-    <main>
+    <main className={styles.main}>
         <div className={styles.sloganAndNav}>
             <IconLink 
                 label="About Blog"

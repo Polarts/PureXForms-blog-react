@@ -6,7 +6,7 @@
 
 $header-height: 250px;
 
-header {
+.header {
     background-color: white;
     height: $header-height;
     overflow: hidden;
@@ -54,7 +54,7 @@ header {
     }
 }
 
-main {
+.main {
 
     .sloganAndNav {
         display: flex;

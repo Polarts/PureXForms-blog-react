@@ -7,7 +7,7 @@ const ParallaxScene = (props) => {
 
     useEffect(() => {
         new Parallax(sceneDiv.current, props);
-    });
+    }, [props]);
     
     return (
         <div ref={sceneDiv}>

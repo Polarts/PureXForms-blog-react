@@ -19,14 +19,8 @@ const PostPreview = (props) => {
     const history = useHistory();
 
     const previewClicked = () => {
-        if (props.hasOwnProperty("slug")) {
+        if ("slug" in props) {
             history.push("/post/"+props.slug);
-        }
-    }
-
-    const renderTags = () => {
-        if (props.hasOwnProperty("tags")) {
-            return props.tags.map(t => <TagIcon tagName={t} key={t}/>);
         }
     }
 
@@ -40,7 +34,7 @@ const PostPreview = (props) => {
                 </div>
                 <div className={styles.bottomBar}>
                     <div className={styles.tags}>
-                        {renderTags()}
+                        {props?.tags?.map(t => <TagIcon tagName={t} key={t}/>)}
                     </div>
                     <DateFormatter date={props.date}/>
                 </div>

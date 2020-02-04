@@ -60,14 +60,13 @@ const Post = () => {
                     setComments(data);
                 });
         }
-    })
+    }, [postMeta])
 
     // #endregion
 
-    // #region inner renderers
-
+    // #region inner components
     
-    const metaContentRenderer = () => {
+    const MetaContent = () => {
         if (postMeta) {
             return (
                 <div className={styles.metaContent}>
@@ -81,6 +80,7 @@ const Post = () => {
                 </div>
             )
         }
+        return <></>;
     }
 
     // #endregion
@@ -91,7 +91,7 @@ const Post = () => {
             <h1>{postMeta ? postMeta.title.rendered : slug}</h1>
         </header>
         <main className={styles.main}>
-            { metaContentRenderer() }
+            <MetaContent/>
             <div className={styles.postContent}>
                 {ReactHtmlParser(postContent)}
             </div>

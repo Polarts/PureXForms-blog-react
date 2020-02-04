@@ -43,13 +43,11 @@
         .summary {
 
             max-height: 120px;
-            overflow: hidden;
-
+            overflow-y: scroll;
             transition: all 0.2s;
 
             &:hover {
                 max-height: 250px;
-                overflow-y: scroll;
             }
 
             h2 {

@@ -10,7 +10,7 @@ const TagIcon = (props) => {
         return null;
     }
 
-    const renderTag = () => {
+    const Tag = () => {
         try {
             var tagImg = require("../../res/png/tags/"+props.tagName+".png");
             return <img src={tagImg} alt={props.tagName}/>
@@ -21,7 +21,7 @@ const TagIcon = (props) => {
     }
     return (
         <div className={styles.container}>
-            {renderTag()}
+            <Tag/>
             <span className="tooltip">
                 {props.tagName}
             </span>

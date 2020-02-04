@@ -68,7 +68,7 @@ const RecentPosts = (props) => {
 
     // #endregion
 
-    // #region UI functions
+    // #region render helpers
 
     const mapPostsToPreviews = () => {
         return state.posts.map(p => 
