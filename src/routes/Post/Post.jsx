@@ -87,7 +87,10 @@ const Post = () => {
 
     return (
         <>
-        <header>
+        <header className={styles.header}>
+            <svg viewBox="0, 0, 70, 10">
+                <polygon points="0,0 60,0 70,10 0,10"/>
+            </svg>
             <h1>{postMeta ? postMeta.title.rendered : slug}</h1>
         </header>
         <main className={styles.main}>
