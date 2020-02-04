@@ -1,6 +1,6 @@
 import './stylesheets/global.scss';
 import React from 'react';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
 import Home from './routes/Home/Home';
 import Post from './routes/Post/Post';
 
@@ -20,6 +20,10 @@ function App() {
 
         <Route exact path="/about-blog">
           <h1>About Blog</h1>
+        </Route>
+
+        <Route exact path="/:slug">
+          <Post/>
         </Route>
 
         <Route exact path="/post/:slug">

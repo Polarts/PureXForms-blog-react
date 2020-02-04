@@ -1,8 +1,7 @@
 import styles from './Home.module.scss';
 import React from 'react';
 import { ReactComponent as Logo } from '../../res/svg/Logo.svg';
-import Icon from '@mdi/react'
-import { mdiAccountCircle, mdiWeb, mdiChevronLeft, mdiChevronRight } from '@mdi/js'
+import { mdiAccountCircle, mdiWeb } from '@mdi/js';
 import RecentPosts from '../../components/RecentPosts/RecentPosts';
 import ParallaxScene from '../../components/ParallaxScene/ParallaxScene';
 import SloganRandomizer from '../../components/SloganRandomizer/SloganRandomizer';
