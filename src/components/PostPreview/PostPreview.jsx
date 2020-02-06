@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import TagIcon from '../TagIcon/TagIcon';
 import styles from './PostPreview.module.scss';
 import ReactHtmlParser from 'react-html-parser';
@@ -16,6 +16,8 @@ import DateFormatter from '../DateFormatter/DateFormatter';
  */
 const PostPreview = (props) => {
 
+    const summaryRef = useRef(null);
+
     const history = useHistory();
 
     const previewClicked = () => {
@@ -24,11 +26,15 @@ const PostPreview = (props) => {
         }
     }
 
+    const mouseLeft = () => {
+        summaryRef.current.scrollTop = 0;
+    }
+
     return (
         <div className={styles.container} onClick={previewClicked}>
             <img className={styles.previewImage} src={props.previewImgUrl} alt={props.title+" preview"}/>
             <div className={styles.contents}>    
-                <div className={styles.summary}>
+                <div className={styles.summary} ref={summaryRef} onMouseLeave={mouseLeft}>
                     <h2>{props.title}</h2>
                     {ReactHtmlParser(props.excerpt)}
                 </div>
