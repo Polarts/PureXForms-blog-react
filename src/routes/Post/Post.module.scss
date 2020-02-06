@@ -10,7 +10,7 @@
     background-image: radial-gradient(circle, white 40%, rgba(255, 255, 255, 0.8) 80%, transparent 100%),
                       url('../../res/svg/floaters/1.svg');
 
-    svg {
+    .bgShape {
         width: 65%;
         fill: $emphasis;
         position: absolute;
@@ -22,6 +22,12 @@
         color: white;
         top: 0;
         left: 25px;
+    }
+
+    .logo {
+        position: absolute;
+        bottom: 20%;
+        right: 15%;
     }
 }
 

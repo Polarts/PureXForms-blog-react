@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
 import DateFormatter from '../../components/DateFormatter/DateFormatter';
 import { getPostsAsync, getUsersAsync, getCommentsAsync } from '../../services/wordpress.service';
+import { ReactComponent as LogoSmall } from '../../res/svg/Logo-small.svg';
 import styles from './Post.module.scss';
 
 const Post = () => {
@@ -88,10 +89,11 @@ const Post = () => {
     return (
         <>
         <header className={styles.header}>
-            <svg viewBox="0, 0, 70, 10">
+            <svg viewBox="0, 0, 70, 10" className={styles.bgShape}>
                 <polygon points="0,0 60,0 70,10 0,10"/>
             </svg>
             <h1>{postMeta ? postMeta.title.rendered : slug}</h1>
+            <LogoSmall className={styles.logo}/>
         </header>
         <main className={styles.main}>
             <MetaContent/>
