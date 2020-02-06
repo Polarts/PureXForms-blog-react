@@ -41,7 +41,7 @@
         float: right;
         min-width: 33vw;
 
-        img {
+        .previewImg {
             width: 300px;
         }
 
@@ -71,6 +71,10 @@
 
         p, a {
             font-size: 16rem;
+        }
+
+        a {
+            color: $emphasis;
         }
 
     }

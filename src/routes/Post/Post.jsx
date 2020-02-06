@@ -71,7 +71,7 @@ const Post = () => {
         if (postMeta) {
             return (
                 <div className={styles.metaContent}>
-                    <img src={"https://i7.pngguru.com/preview/343/207/672/iphone-x-iphone-8-plus-iphone-7-apple-iphone.jpg"} alt={`${postMeta.title} preview`}/>
+                    <img className={styles.previewImg} src={"https://i7.pngguru.com/preview/343/207/672/iphone-x-iphone-8-plus-iphone-7-apple-iphone.jpg"} alt={`${postMeta.title} preview`}/>
                     <div className={styles.tagsAndDate}>
                         <div className={styles.tags}>
                             {postMeta.tags}
