@@ -24,7 +24,7 @@ const Search = () => {
     return (
         <>
         <header>
-            <NavBar title="Advanced Search"/>
+            <NavBar title="Search All Posts"/>
         </header>
         <main className={styles.main}>
             <form className={styles.searchForm}>

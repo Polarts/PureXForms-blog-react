@@ -89,7 +89,7 @@ const Post = () => {
     return (
         <>
         <header>
-            <NavBar title={postMeta?.title?.rendered ?? mdiPrinterPos.slug}/>
+            <NavBar title={postMeta?.title?.rendered ?? slug}/>
         </header>
         <main className={styles.main}>
             <MetaContent/>

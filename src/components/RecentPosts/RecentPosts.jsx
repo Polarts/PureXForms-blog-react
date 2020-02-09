@@ -5,6 +5,7 @@ import { getPostsAsync, getTagsAsync } from '../../services/wordpress.service'
 import PostPreview from '../PostPreview/PostPreview';
 import styles from './RecentPosts.module.scss';
 import SingleLineForm from '../SingleLineForm/SingleLineForm';
+import { Link } from 'react-router-dom';
 
 const RecentPosts = (props) => {
 
@@ -109,6 +110,7 @@ const RecentPosts = (props) => {
                           spin={!state.postsFetched}
                           className="mdIcon"/>
                 }/>
+            <Link to="/search">I want to see more posts!</Link>
             <Posts/>
         </div>
     );
