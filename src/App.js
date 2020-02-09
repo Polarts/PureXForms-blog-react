@@ -3,6 +3,7 @@ import React from 'react';
 import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
 import Home from './routes/Home/Home';
 import Post from './routes/Post/Post';
+import Search from './routes/Search/Search';
 
 function App() {
 
@@ -12,6 +13,10 @@ function App() {
 
         <Route exact path="/">
           <Home/>
+        </Route>
+
+        <Route exact path="/search">
+          <Search/>
         </Route>
 
         <Route exact path="/about-author">
