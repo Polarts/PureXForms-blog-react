@@ -5,6 +5,8 @@ import styles from './SingleLineForm.module.scss';
  * A single-line input form that consists of one field and a submit button.
  * @param {String} placeholder A placeholder text for the input.
  * @param {String} type The input type, should always be a textual input. 
+ * @param {String} name The input name, in case it's used inside a form. 
+ * @param {String} value The input value. 
  * @param {*} buttonContent Anything you'd like the button to display. Can be text or JSX.
  * @param {Function} textChanged A text change callback. Must take a string parameter!
  * @param {Function} onSubmit A submission callback. Must take a string parameter!
@@ -31,8 +33,7 @@ const SingleLineForm = (props) => {
     }
 
     const onSubmit = (e) => {
-        if (inputRef.current
-            && props.hasOwnProperty("onSubmit")) {
+        if (inputRef.current && "onSubmit" in props) {
                 props.onSubmit(inputRef.current.value)
         }
     }
@@ -42,6 +43,8 @@ const SingleLineForm = (props) => {
             <input 
                 className="u-rounded textbox"
                 type={props.type} 
+                name={props.name}
+                value={props.value}
                 onChange={textChanged} 
                 placeholder={props.placeholder}
                 ref={inputRef}
