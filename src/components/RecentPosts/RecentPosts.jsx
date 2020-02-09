@@ -68,21 +68,22 @@ const RecentPosts = (props) => {
 
     // #endregion
 
-    // #region render helpers
+    // #region inner components
 
-    const mapPostsToPreviews = () => {
-        return state.posts.map(p => 
-            <PostPreview 
-                key={p.title + p.date}
-                title={p.title.rendered}
-                excerpt={p.excerpt.rendered}
-                tags={p.tags.map(id => state.tags.hasOwnProperty(id) ? state.tags[id] : "Uncategorized")}
-                date={p.date}
-                previewImgUrl=""
-                slug={p.slug}
-            />
-        );
-    }
+    const Posts = () => 
+        <div className={styles.posts}>
+            {
+                state.posts.map(p => 
+                    <PostPreview key={p.title + p.date}
+                                 title={p.title.rendered}
+                                 excerpt={p.excerpt.rendered}
+                                 tags={p.tags.map(id => state.tags.hasOwnProperty(id) ? state.tags[id] : "Uncategorized")}
+                                 date={p.date}
+                                 previewImgUrl=""
+                                 slug={p.slug}/>
+                )
+            }
+        </div>
 
     // #endregion
 
@@ -102,18 +103,13 @@ const RecentPosts = (props) => {
                 placeholder="Find a post..."
                 onSubmit={searchSubmitted}
                 buttonContent={
-                    <Icon 
-                        path={state.postsFetched? mdiMagnify : mdiLoading}
-                        title="Search"
-                        color="White"
-                        spin={!state.postsFetched}
-                        className="mdIcon"
-                    />
-                }
-            />
-            <div className={styles.posts}>
-                { mapPostsToPreviews() }
-            </div>
+                    <Icon path={state.postsFetched? mdiMagnify : mdiLoading}
+                          title="Search"
+                          color="White"
+                          spin={!state.postsFetched}
+                          className="mdIcon"/>
+                }/>
+            <Posts/>
         </div>
     );
 }
