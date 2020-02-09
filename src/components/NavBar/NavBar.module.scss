@@ -1,0 +1,32 @@
+
+/// NavBar module ///
+
+@import '../../stylesheets/config/colors';
+
+.navBar {
+    height: 100px;
+    background-color: white;
+    position: relative;
+    background-image: radial-gradient(circle, white 40%, rgba(255, 255, 255, 0.8) 80%, transparent 100%),
+                      url('../../res/svg/floaters/1.svg');
+
+    .bgShape {
+        width: 65%;
+        fill: $emphasis;
+        position: absolute;
+        bottom: 0;
+    }
+
+    h1 {
+        position: absolute;
+        color: white;
+        top: 0;
+        left: 25px;
+    }
+
+    .logo {
+        position: absolute;
+        bottom: 20%;
+        right: 15%;
+    }
+}

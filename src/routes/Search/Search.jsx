@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import queryString from 'query-string'
 import styles from './Search.module.scss';
+import NavBar from '../../components/NavBar/NavBar';
 
 /**
  * The search page.
@@ -22,8 +23,8 @@ const Search = () => {
 
     return (
         <>
-        <header className={styles.header}>
-            Advanced Search
+        <header>
+            <NavBar title="Advanced Search"/>
         </header>
         <main className={styles.main}>
             <form className={styles.searchForm}>
