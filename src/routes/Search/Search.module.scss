@@ -4,4 +4,27 @@
 
 .main {
     
+    .labeledInput {
+        display: flex;
+        flex-direction: column;
+
+        label {
+            margin-left: 15px;
+        }
+    }
+
+    .searchForm {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-areas: 
+            "kwd kwd kwd ath ath"
+            "dt1 tgs lvl lvl sbt";
+
+        input[type=submit] {
+            width: auto;
+            max-height: 30px;
+            align-self: flex-end;
+        }
+    }
 }
