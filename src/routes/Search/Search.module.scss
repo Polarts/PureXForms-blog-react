@@ -3,28 +3,50 @@
 
 
 .main {
-    
-    .labeledInput {
-        display: flex;
-        flex-direction: column;
-
-        label {
-            margin-left: 15px;
-        }
-    }
-
     .searchForm {
         display: grid;
-        grid-template-rows: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 7px;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         grid-template-areas: 
             "kwd kwd kwd ath ath"
-            "dt1 tgs lvl lvl sbt";
+            "dt1 tgs lvl lvl sbt"
+            "div div div div div";
+
+        width: 70%;
+        margin: 25px;
+
+        .labeledInput {
+            display: flex;
+            flex-direction: column;
+            margin-right: 15px;
+    
+            label {
+                margin-left: 13px;
+                margin-bottom: 3px;
+            }
+        }
+
+        .kwd { grid-area: kwd; }
+
+        .ath { grid-area: ath; }
 
         input[type=submit] {
             width: auto;
             max-height: 30px;
-            align-self: flex-end;
+
+            align-self: end;
+            justify-self: end;
+            grid-area: sbt;
+        }
+
+
+        .divider {
+            grid-area: div;
+            align-self: end;
+
+            width: 100%;
+            height: 2px;
+            background-color: lightgray;
         }
     }
 }

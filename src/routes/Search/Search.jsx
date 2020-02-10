@@ -28,11 +28,21 @@ const Search = () => {
         </header>
         <main className={styles.main}>
             <form className={styles.searchForm}>
-                <div className={`${styles.keywordsInput} ${styles.labeledInput}`}>
+
+                <div className={`${styles.kwd} ${styles.labeledInput}`}>
                     <label htmlFor="Keywords">Keywords</label>
                     <input className="u-rounded textbox" name="keywords"/>
                 </div>
-                <input className="u-rounded primary button" type="submit"/>
+
+                <div className={`${styles.ath} ${styles.labeledInput}`}>
+                    <label htmlFor="author">Author</label>
+                    <input className="u-rounded textbox" name="author"/>
+                </div>
+
+                <input className="u-rounded primary button" type="submit" value="Search"/>
+
+                <div className={styles.divider}/>
+
             </form>
         </main>
         </>
