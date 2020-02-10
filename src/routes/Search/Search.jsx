@@ -39,6 +39,16 @@ const Search = () => {
                     <input className="u-rounded textbox" name="author"/>
                 </div>
 
+                <div className={`${styles.dt1} ${styles.labeledInput}`}>
+                    <label htmlFor="startDate">Date</label>
+                    <input className="u-rounded textbox" name="startDate"/>
+                </div>
+
+                <div className={`${styles.tgs} ${styles.labeledInput}`}>
+                    <label htmlFor="tags">Tags</label>
+                    <input className="u-rounded textbox" name="tags"/>
+                </div>
+
                 <input className="u-rounded primary button" type="submit" value="Search"/>
 
                 <div className={styles.divider}/>

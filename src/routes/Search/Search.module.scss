@@ -5,7 +5,7 @@
 .main {
     .searchForm {
         display: grid;
-        grid-template-rows: 1fr 1fr 7px;
+        grid-template-rows: 1fr 1fr 12px;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         grid-template-areas: 
             "kwd kwd kwd ath ath"
@@ -18,7 +18,7 @@
         .labeledInput {
             display: flex;
             flex-direction: column;
-            margin-right: 15px;
+            margin: 0 0 10px 15px;
     
             label {
                 margin-left: 13px;
@@ -30,10 +30,11 @@
 
         .ath { grid-area: ath; }
 
-        input[type=submit] {
-            width: auto;
-            max-height: 30px;
+        .dt1 { grid-area: dt1; }
 
+        .tgs { grid-area: tgs; }
+
+        input[type=submit] {
             align-self: end;
             justify-self: end;
             grid-area: sbt;
