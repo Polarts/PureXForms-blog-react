@@ -41,7 +41,7 @@ const Search = () => {
 
                 <div className={`${styles.dt1} ${styles.labeledInput}`}>
                     <label htmlFor="startDate">Date</label>
-                    <input className="u-rounded textbox" name="startDate"/>
+                    <input className="u-rounded textbox" name="startDate" type="date"/>
                 </div>
 
                 <div className={`${styles.tgs} ${styles.labeledInput}`}>
