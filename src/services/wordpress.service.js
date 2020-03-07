@@ -1,6 +1,6 @@
 import * as ax from 'axios';
 
-const BASE_URL = "/wp-json/wp/v2/";
+const API_URL = "/wp-json/wp/v2/";
 
 // #region cache
 
@@ -20,7 +20,7 @@ var tags;
 export const getTagsAsync = () => new Promise( 
     async (result) => {
         if (!tags) {
-            let url = BASE_URL+ "tags?_fields=id,name&per_page=100";
+            let url = API_URL+ "tags?_fields=id,name&per_page=100";
             tags = {};
             await ax.get(url).then(response => {
                 console.log(response.data)
@@ -44,7 +44,7 @@ export const getTagsAsync = () => new Promise(
  */
 export const getPostsAsync = (query, fields) => new Promise( 
     async (result) => {
-        let url = BASE_URL + "posts?";
+        let url = API_URL + "posts?";
         
         if (query) {
            url = mapObjectToQueryString(url, query);
@@ -69,7 +69,7 @@ export const getPostsAsync = (query, fields) => new Promise(
  */
 export const getUsersAsync = (query, fields) => new Promise( 
     async (result) => {
-        let url = BASE_URL + "users?";
+        let url = API_URL + "users?";
         
         if (query) {
            url = mapObjectToQueryString(url, query);
@@ -92,7 +92,7 @@ export const getUsersAsync = (query, fields) => new Promise(
  */
 export const getCommentsAsync = (postId) => new Promise( 
     async (result) => {
-        let url = BASE_URL + `users?post=${postId}&_fields=author_name,author_email,content,date`;
+        let url = API_URL + `users?post=${postId}&_fields=author_name,author_email,content,date`;
         await ax.get(url).then(response => result(response.data));
     }
 );

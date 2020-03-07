@@ -6,11 +6,11 @@
     .searchForm {
         display: grid;
         grid-template-rows: 1fr 1fr 12px;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         grid-template-areas: 
-            "kwd kwd kwd ath ath"
-            "dt1 tgs lvl lvl sbt"
-            "div div div div div";
+            "kwd kwd kwd ath ath tgs"
+            "dt1 dt2 lvl lvl . sbt"
+            "div div div div div div";
 
         width: 70%;
         margin: 25px;
@@ -32,7 +32,11 @@
 
         .dt1 { grid-area: dt1; }
 
+        .dt2 { grid-area: dt2; }
+
         .tgs { grid-area: tgs; }
+
+        .lvl { grid-area: lvl; }
 
         input[type=submit] {
             align-self: end;
@@ -40,6 +44,15 @@
             grid-area: sbt;
         }
 
+        .radioButtons {
+            display: flex;
+            flex-direction: row;
+
+            span {
+                font-size: 14rem;
+                user-select: none;
+            }
+        }
 
         .divider {
             grid-area: div;
