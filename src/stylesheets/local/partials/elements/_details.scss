@@ -1,0 +1,15 @@
+
+/// Details ///
+
+details {
+    summary {
+        outline: none;
+        font-size: 16rem;
+
+        &::-webkit-details-marker {
+            //display: none;
+        }
+    }
+
+    
+}

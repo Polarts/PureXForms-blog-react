@@ -123,7 +123,7 @@ const Search = () => {
             </form>
 
             <details>
-                <summary style={{fontSize: "16px"}}>2020</summary>
+                <summary>2020</summary>
             </details>
         </main>
         </>
