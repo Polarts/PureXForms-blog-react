@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect, useReducer } from 'react';
 import { useLocation } from 'react-router-dom';
 import queryString from 'query-string'
+import moment from 'moment';
+import { getPostsAsync } from '../../services/wordpress.service'
 import styles from './Search.module.scss';
 import NavBar from '../../components/NavBar/NavBar';
 
@@ -22,24 +24,56 @@ const Search = () => {
     const [dateFrom, setDateFrom] = useState(new Date());
     const [dateTo, setDateTo] = useState(new Date());
     const [level, setLevel] = useState(NaN);
-    const [post, setPosts] = useState([]);
+    const [posts, setPosts] = useState([]);
 
     //#endregion
 
     // init effect
     useEffect(() => {
+        
         const {keywords, author, startDate, endDate, tags, level} = queryString.parse(location.search);
+        
+        //#region set state
         if (keywords) setKeywords(keywords);
         if (author) setAuthor(author);
         if (startDate) setDateFrom(startDate);
         if (endDate) setDateTo(endDate);
         if (tags) setTags(tags);
         if (level) setLevel(level); 
+        //#endregion
+
+        //#region get posts
+        (async () => await getPostsAsync(
+                {search: keywords},
+                ["title", "excerpt", "tags", "date", "slug"]
+            ).then(res => {setPosts(res); PostsByDate(res);})
+        )();
+        //#endregion
 
     }, [location]);
 
     const tagsChanged = val => {
         setTags([val]);
+    }
+
+    const PostsByDate = (posts) => {
+        if (posts) {
+            let postsByDate = {};
+            posts.forEach(p => {
+                let year = moment(p.date).format("YYYY");
+                let month = moment(p.date).format("MMM");
+
+                if (!(year in postsByDate)) {
+                    postsByDate[year] = {};
+                }
+
+                if (!(month in postsByDate[year])) {
+                    postsByDate[year][month] = [];
+                }
+
+                postsByDate[year][month].push(p);
+            });
+        }
     }
 
     return (
@@ -123,7 +157,14 @@ const Search = () => {
             </form>
 
             <details>
-                <summary>2020</summary>
+                <summary className={styles.year}>
+                    2020
+                </summary>
+                <details>
+                    <summary className={styles.month}>
+                        Jan
+                    </summary>
+                </details>
             </details>
         </main>
         </>
