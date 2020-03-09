@@ -5,6 +5,8 @@ details {
     summary {
         outline: none;
         font-size: 16rem;
+        user-select: none;
+        color: gray;
 
         &::-webkit-details-marker {
             //display: none;
