@@ -1,5 +1,5 @@
 /* eslint-disable eqeqeq */
-import React, { useState, useRef, useEffect, useReducer } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import queryString from 'query-string'
 import moment from 'moment';
@@ -87,22 +87,23 @@ const Search = () => {
             let postViews = [];
             Object.keys(postsByDate).forEach(year => {
                 postViews.push(
-                    <details>
+                    <details key={year}>
                         <summary className={styles.year}>
                             {year}
                         </summary>
                         {Object.keys(postsByDate[year]).map(month => 
-                            <details>
+                            <details key={month}>
                                 <summary className={styles.month}>
                                     {month}
                                 </summary>
                                 <div className={styles.postsRow}>
                                     {Object.values(postsByDate[year][month]).map(post => 
                                         <PostPreview title={post.title.rendered}
-                                                    excerpt={post.excerpt}
-                                                    tags={post.tags.map(id => allTags.hasOwnProperty(id) ? allTags[id] : "Uncategorized")}
-                                                    date={post.date}
-                                                    slug={post.slug}/>
+                                                     excerpt={post.excerpt}
+                                                     tags={post.tags.map(id => allTags.hasOwnProperty(id) ? allTags[id] : "Uncategorized")}
+                                                     date={post.date}
+                                                     slug={post.slug}
+                                                     key={post.slug}/>
                                     )}
                                 </div>
                             </details>
