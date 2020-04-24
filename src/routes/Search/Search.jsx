@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React, { useState, useRef, useEffect, useReducer } from 'react';
 import { useLocation } from 'react-router-dom';
 import queryString from 'query-string'
@@ -5,6 +6,7 @@ import moment from 'moment';
 import { getPostsAsync } from '../../services/wordpress.service'
 import styles from './Search.module.scss';
 import NavBar from '../../components/NavBar/NavBar';
+import PostPreview from '../../components/PostPreview/PostPreview';
 
 /**
  * The search page.
@@ -46,7 +48,7 @@ const Search = () => {
         (async () => await getPostsAsync(
                 {search: keywords},
                 ["title", "excerpt", "tags", "date", "slug"]
-            ).then(res => {setPosts(res); PostsByDate(res);})
+            ).then(res => {setPosts(res);})
         )();
         //#endregion
 
@@ -56,7 +58,7 @@ const Search = () => {
         setTags([val]);
     }
 
-    const PostsByDate = (posts) => {
+    const PostsByDate = () => {
         if (posts) {
             let postsByDate = {};
             posts.forEach(p => {
@@ -73,6 +75,32 @@ const Search = () => {
 
                 postsByDate[year][month].push(p);
             });
+
+            let postViews = [];
+            Object.keys(postsByDate).forEach(year => {
+                postViews.push(
+                    <details>
+                        <summary className={styles.year}>
+                            {year}
+                        </summary>
+                        {Object.keys(postsByDate[year]).map(month => 
+                            <details>
+                                <summary className={styles.month}>
+                                    {month}
+                                </summary>
+                                {Object.values(postsByDate[year][month]).map(post => 
+                                    <PostPreview title={post.title.rendered}
+                                                 excerpt={post.excerpt}
+                                                 tags={post.tags}
+                                                 date={post.date}
+                                                 slug={post.slug}/>
+                                )}
+                            </details>
+                        )}
+                    </details>
+                );
+            });
+            return postViews;
         }
     }
 
@@ -155,17 +183,7 @@ const Search = () => {
                 <div className={styles.divider}/>
 
             </form>
-
-            <details>
-                <summary className={styles.year}>
-                    2020
-                </summary>
-                <details>
-                    <summary className={styles.month}>
-                        Jan
-                    </summary>
-                </details>
-            </details>
+            <PostsByDate/>
         </main>
         </>
     );

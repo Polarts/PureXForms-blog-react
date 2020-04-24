@@ -15,7 +15,7 @@ const TagIcon = (props) => {
             var tagImg = require("../../res/png/tags/"+props.tagName+".png");
             return <img src={tagImg} alt={props.tagName}/>
         } catch {
-            return <div className={styles.letterTag}>{props.tagName.charAt(0)}</div>
+            return <div className={styles.letterTag}>{props.tagName?.charAt(0)}</div>
         }
 
     }
