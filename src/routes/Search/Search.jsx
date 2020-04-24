@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect, useReducer } from 'react';
 import { useLocation } from 'react-router-dom';
 import queryString from 'query-string'
 import moment from 'moment';
-import { getPostsAsync } from '../../services/wordpress.service'
+import { getPostsAsync, getTagsAsync } from '../../services/wordpress.service'
 import styles from './Search.module.scss';
 import NavBar from '../../components/NavBar/NavBar';
 import PostPreview from '../../components/PostPreview/PostPreview';
@@ -27,6 +27,7 @@ const Search = () => {
     const [dateTo, setDateTo] = useState(new Date());
     const [level, setLevel] = useState(NaN);
     const [posts, setPosts] = useState([]);
+    const [allTags, setAllTags] = useState([]);
 
     //#endregion
 
@@ -50,6 +51,13 @@ const Search = () => {
                 ["title", "excerpt", "tags", "date", "slug"]
             ).then(res => {setPosts(res);})
         )();
+        //#endregion
+
+        //#region get all tags
+        (async () => {
+            await getTagsAsync()
+                .then(res => setAllTags(res));
+        })()
         //#endregion
 
     }, [location]);
@@ -88,13 +96,15 @@ const Search = () => {
                                 <summary className={styles.month}>
                                     {month}
                                 </summary>
-                                {Object.values(postsByDate[year][month]).map(post => 
-                                    <PostPreview title={post.title.rendered}
-                                                 excerpt={post.excerpt}
-                                                 tags={post.tags}
-                                                 date={post.date}
-                                                 slug={post.slug}/>
-                                )}
+                                <div className={styles.postsRow}>
+                                    {Object.values(postsByDate[year][month]).map(post => 
+                                        <PostPreview title={post.title.rendered}
+                                                    excerpt={post.excerpt}
+                                                    tags={post.tags.map(id => allTags.hasOwnProperty(id) ? allTags[id] : "Uncategorized")}
+                                                    date={post.date}
+                                                    slug={post.slug}/>
+                                    )}
+                                </div>
                             </details>
                         )}
                     </details>

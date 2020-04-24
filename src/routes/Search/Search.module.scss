@@ -77,4 +77,10 @@
     .month {
         font-size: 22rem;
     }
+
+    .postsRow {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
 }
