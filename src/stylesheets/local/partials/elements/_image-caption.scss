@@ -1,0 +1,25 @@
+@import '../../../config/colors';
+
+/// Image Caption Element ///
+
+.wp-caption {
+    background-color: white;
+    border: 3px solid $emphasis;
+    border-radius: 1%;
+
+    padding: 7px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+        border-radius: 1%;
+    }
+
+    p {
+        margin: 7px 0;
+        color: $emphasis;
+        font-weight: bold;
+    }
+}

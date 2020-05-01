@@ -47,9 +47,9 @@ const Search = () => {
 
         //#region get posts
         (async () => await getPostsAsync(
-                {search: keywords},
+                {search: keywords, per_page: 100},
                 ["title", "excerpt", "tags", "date", "slug"]
-            ).then(res => {setPosts(res);})
+            ).then(res => setPosts(res))
         )();
         //#endregion
 
@@ -111,7 +111,7 @@ const Search = () => {
                     </details>
                 );
             });
-            return postViews;
+            return postViews.reverse();
         }
     }
 

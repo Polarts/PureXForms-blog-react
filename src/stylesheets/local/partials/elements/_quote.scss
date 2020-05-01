@@ -1,0 +1,28 @@
+
+/// Quote Elements ///
+
+blockquote {
+    position: relative;
+
+    &::before {
+        width: 5px;
+        height: 100%;
+
+        position: absolute;
+        left: -15px;
+        top: 0;
+
+        background-color: lightgray;
+        
+        content: ' ';
+    }
+
+    cite {
+        color: gray;
+        font-style: italic;
+
+        &::before {
+            content: "―";
+        }
+    }
+}
