@@ -9,7 +9,7 @@
         "@mdi/react": "^1.2.1",
         "axios": "^0.19.1",
         "moment": "^2.24.0",
-        "node-sass": "^4.13.0",
+        "node-sass": "^7.0.0",
         "parallax-js": "^3.1.0",
         "query-string": "^6.10.1",
         "react": "^16.12.0",
